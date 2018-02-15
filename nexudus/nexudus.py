@@ -244,7 +244,404 @@ class BookingProduct(Nexudus):
                                ProductId=None,
                                Quantity=None):
         """
-        API to update a booking.
+        API to update a booking product.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.put(self.BASE_URL, data=payload)
+
+
+class CheckIn(Nexudus):
+    BASE_URL = DOMAIN_URL + '/spaces/checkins'
+
+    def get_checkins(self,
+                     Checkin_Id=None,
+                     Checkin_Coworker=None,
+                     Checkin_Business=None,
+                     Checkin_FromTime=None,
+                     Checkin_ToTime=None,
+                     Checkin_CountsTowardsPlanLimits=None,
+                     Checkin_CoworkerTimePassGuid=None,
+                     Checkin_AutoCheckout=None,
+                     Checkin_LastActivity=None,
+                     Checkin_MacAddresses=None,
+                     Checkin_TeamsAtTheTimeOfCheckin=None,
+                     Checkin_TariffAtTheTimeOfCheckin=None,
+                     Checkin_Coworker_FullName=None,
+                     Checkin_Business_Name=None):
+        """
+        API to get all checkins.
+        """
+        params = parse_params(locals())
+        return self.session.get(self.BASE_URL, params=params)
+
+    def get_checkin_by_id(self, Checkin_Id):
+        """
+        API to get checkin by checkin id.
+        """
+        return self.session.get(self.BASE_URL + '/{}'.format(Checkin_Id))
+
+    def create_checkin(self, BusinessId=None, FromTime=None):
+        """
+        API to create a checkin.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.post(self.BASE_URL, data=payload)
+
+    def delete_checkin(self, Checkin_Id):
+        """
+        API to delete checkin by checkin id.
+        """
+        return self.session.delete(self.BASE_URL + '/{}'.format(Checkin_Id))
+
+    def update_checkin(self, Id=None, BusinessId=None, FromTime=None):
+        """
+        API to update a checkin.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.put(self.BASE_URL, data=payload)
+
+
+class Coworker(Nexudus):
+    BASE_URL = DOMAIN_URL + '/spaces/coworkers'
+
+    def get_checkins(self,
+                     Coworker_Id=None,
+                     Coworker_Tariff=None,
+                     Coworker_NextTariff=None,
+                     Coworker_FullName=None,
+                     Coworker_Salutation=None,
+                     Coworker_Gender=None,
+                     Coworker_Email=None,
+                     Coworker_CreateUser=None,
+                     Coworker_Address=None,
+                     Coworker_PostCode=None,
+                     Coworker_CityName=None,
+                     Coworker_State=None,
+                     Coworker_Country=None,
+                     Coworker_SimpleTimeZone=None,
+                     Coworker_MobilePhone=None,
+                     Coworker_LandLine=None,
+                     Coworker_DateOfBirth=None,
+                     Coworker_NickName=None,
+                     Coworker_BusinessArea=None,
+                     Coworker_CompanyName=None,
+                     Coworker_ProfileWebsite=None,
+                     Coworker_ProfileTags=None,
+                     Coworker_ProfileSummary=None,
+                     Coworker_Twitter=None,
+                     Coworker_Facebook=None,
+                     Coworker_Linkedin=None,
+                     Coworker_Skype=None,
+                     Coworker_ProfileIsPublic=None,
+                     Coworker_InvoicingBusiness=None,
+                     Coworker_BillingEmail=None,
+                     Coworker_BillingName=None,
+                     Coworker_BillingAddress=None,
+                     Coworker_BillingPostCode=None,
+                     Coworker_BillingCityName=None,
+                     Coworker_BillingState=None,
+                     Coworker_BillingCountry=None,
+                     Coworker_BillingSimpleTimeZone=None,
+                     Coworker_TaxRate=None,
+                     Coworker_TaxIDNumber=None,
+                     Coworker_BankName=None,
+                     Coworker_BankAccount=None,
+                     Coworker_NotifyOnNewInvoice=None,
+                     Coworker_EnableGoCardlessPayments=None,
+                     Coworker_GoCardlessContractNumber=None,
+                     Coworker_LastOverDueInvoiceReminder=None,
+                     Coworker_LastLowCreditReminder=None,
+                     Coworker_RegularPaymentProvider=None,
+                     Coworker_RegularPaymentContractNumber=None,
+                     Coworker_CardNumber=None,
+                     Coworker_DoNotProcessInvoicesAutomatically=None,
+                     Coworker_AllowNetworkCheckin=None,
+                     Coworker_CheckinSinceLastRenewal=None,
+                     Coworker_MinutesSinceLastRenewal=None,
+                     Coworker_AccessCardId=None,
+                     Coworker_EzeepUserId=None,
+                     Coworker_EzeepFreePrinting=None,
+                     Coworker_PaperCutPayAsYouPrint=None,
+                     Coworker_PaperCutFreePrinting=None,
+                     Coworker_Tag=None,
+                     Coworker_Notes=None,
+                     Coworker_User=None,
+                     Coworker_Active=None,
+                     Coworker_BillingDay=None,
+                     Coworker_NextInvoice=None,
+                     Coworker_IncludeSignupFee=None,
+                     Coworker_ApplyProRating=None,
+                     Coworker_NextAutoInvoice=None,
+                     Coworker_RegistrationDate=None,
+                     Coworker_CancellationDate=None,
+                     Coworker_GeneralTermsAccepted=None,
+                     Coworker_PricePlanTermsAccepted=None,
+                     Coworker_LastRenewal=None,
+                     Coworker_LastInvoiceAttempt=None,
+                     Coworker_Custom1=None,
+                     Coworker_Custom2=None,
+                     Coworker_Custom3=None,
+                     Coworker_Custom4=None,
+                     Coworker_Custom5=None,
+                     Coworker_Custom6=None,
+                     Coworker_Custom7=None,
+                     Coworker_Custom8=None,
+                     Coworker_Custom9=None,
+                     Coworker_Custom10=None,
+                     Coworker_Custom11=None,
+                     Coworker_Custom12=None,
+                     Coworker_Custom13=None,
+                     Coworker_Custom14=None,
+                     Coworker_Custom15=None,
+                     Coworker_Custom16=None,
+                     Coworker_Custom17=None,
+                     Coworker_Custom18=None,
+                     Coworker_Custom19=None,
+                     Coworker_Custom20=None,
+                     Coworker_Custom21=None,
+                     Coworker_Custom22=None,
+                     Coworker_Custom23=None,
+                     Coworker_Custom24=None,
+                     Coworker_Custom25=None,
+                     Coworker_Custom26=None,
+                     Coworker_Custom27=None,
+                     Coworker_Custom28=None,
+                     Coworker_Custom29=None,
+                     Coworker_Custom30=None,
+                     Coworker_Tariff_Name=None,
+                     Coworker_Businesses=None,
+                     Coworker_Teams=None):
+        """
+        API to get all coworkers.
+        """
+        params = parse_params(locals())
+        return self.session.get(self.BASE_URL, params=params)
+
+    def get_coworker_by_id(self, Coworker_Id):
+        """
+        API to get coworker by coworker id.
+        """
+        return self.session.get(self.BASE_URL + '/{}'.format(Coworker_Id))
+
+    def create_coworker(self,
+                        FullName=None,
+                        Email=None,
+                        CountryId=None,
+                        SimpleTimeZoneId=None,
+                        CheckinSinceLastRenewal=None,
+                        MinutesSinceLastRenewal=None,
+                        BillingDay=None,
+                        AddedBusinesses=[],
+                        AddedTeams=[]):
+        """
+        API to create a coworker.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.post(self.BASE_URL, data=payload)
+
+    def delete_coworker(self, Coworker_Id):
+        """
+        API to delete coworker by coworker id.
+        """
+        return self.session.delete(self.BASE_URL + '/{}'.format(Coworker_Id))
+
+    def update_coworker(self,
+                        Id=None,
+                        FullName=None,
+                        Email=None,
+                        CountryId=None,
+                        SimpleTimeZoneId=None,
+                        CheckinSinceLastRenewal=None,
+                        MinutesSinceLastRenewal=None,
+                        BillingDay=None,
+                        AddedBusinesses=[],
+                        AddedTeams=[]):
+        """
+        API to update a coworker.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.put(self.BASE_URL, data=payload)
+
+
+class PricePlanHistory(Nexudus):
+    BASE_URL = DOMAIN_URL + '/spaces/coworkerpriceplanhistories'
+
+    def get_price_plan_histories(
+            self,
+            CoworkerPricePlanHistory_Id=None,
+            CoworkerPricePlanHistory_Coworker=None,
+            CoworkerPricePlanHistory_OldTariffName=None,
+            CoworkerPricePlanHistory_NewTariffName=None,
+            CoworkerPricePlanHistory_OldTariffUniqueId=None,
+            CoworkerPricePlanHistory_NewTariffUniqueId=None,
+            CoworkerPricePlanHistory_IsUpgrade=None,
+            CoworkerPricePlanHistory_Notes=None,
+            CoworkerPricePlanHistory_OldValue=None,
+            CoworkerPricePlanHistory_NewValue=None,
+            CoworkerPricePlanHistory_OldQuantity=None,
+            CoworkerPricePlanHistory_NewQuantity=None,
+            CoworkerPricePlanHistory_CreatedOnLocal=None):
+        """
+        API to get all price_plan_histories.
+        """
+        params = parse_params(locals())
+        return self.session.get(self.BASE_URL, params=params)
+
+    def get_price_plan_history_by_id(self, CoworkerPricePlanHistory_Id):
+        """
+        API to get price_plan_history by price_plan_history id.
+        """
+        return self.session.get(
+            self.BASE_URL + '/{}'.format(CoworkerPricePlanHistory_Id))
+
+
+class Resource(Nexudus):
+    BASE_URL = DOMAIN_URL + '/spaces/resources'
+
+    def get_resources(self,
+                      Resource_Id=None,
+                      Resource_Business=None,
+                      Resource_Name=None,
+                      Resource_ResourceType=None,
+                      Resource_Description=None,
+                      Resource_Visible=None,
+                      Resource_DisplayOrder=None,
+                      Resource_GroupName=None,
+                      Resource_Projector=None,
+                      Resource_Internet=None,
+                      Resource_ConferencePhone=None,
+                      Resource_StandardPhone=None,
+                      Resource_WhiteBoard=None,
+                      Resource_LargeDisplay=None,
+                      Resource_Catering=None,
+                      Resource_TeaAndCoffee=None,
+                      Resource_Drinks=None,
+                      Resource_SecurityLock=None,
+                      Resource_CCTV=None,
+                      Resource_VoiceRecorder=None,
+                      Resource_AirConditioning=None,
+                      Resource_Heating=None,
+                      Resource_NaturalLight=None,
+                      Resource_AllowMultipleBookings=None,
+                      Resource_Allocation=None,
+                      Resource_BookInAdvanceLimit=None,
+                      Resource_LateBookingLimit=None,
+                      Resource_LateCancellationLimit=None,
+                      Resource_IntervalLimit=None,
+                      Resource_NoReturnPolicy=None,
+                      Resource_NoReturnPolicyAllResources=None,
+                      Resource_NoReturnPolicyAllUsers=None,
+                      Resource_MaxBookingLength=None,
+                      Resource_MinBookingLength=None,
+                      Resource_Shifts=None,
+                      Resource_GoogleCalendarId=None,
+                      Resource_KisiGroupId=None,
+                      Resource_AccessControlGroupId=None,
+                      Resource_Longitude=None,
+                      Resource_Latitude=None,
+                      Resource_ResourceType_Name=None,
+                      Resource_Tariffs=None,
+                      Resource_LinkedResources=None):
+        """
+        API to get all resources.
+        """
+        params = parse_params(locals())
+        return self.session.get(self.BASE_URL, params=params)
+
+    def get_resource_by_id(self, Resource_Id):
+        """
+        API to get resource by resource id.
+        """
+        return self.session.get(self.BASE_URL + '/{}'.format(Resource_Id))
+
+    def create_resource(self,
+                        BusinessId=None,
+                        Name=None,
+                        ResourceTypeId=None,
+                        DisplayOrder=None,
+                        AddedTariffs=[],
+                        AddedLinkedResources=[]):
+        """
+        API to create a resource.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.post(self.BASE_URL, data=payload)
+
+    def delete_resource(self, Resource_Id):
+        """
+        API to delete resource by resource id.
+        """
+        return self.session.delete(self.BASE_URL + '/{}'.format(Resource_Id))
+
+    def update_resource(self,
+                        Id=None,
+                        BusinessId=None,
+                        Name=None,
+                        ResourceTypeId=None,
+                        DisplayOrder=None,
+                        AddedTariffs=[],
+                        AddedLinkedResources=[]):
+        """
+        API to update a resource.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.put(self.BASE_URL, data=payload)
+
+
+class ResourceTimeSlot(Nexudus):
+    BASE_URL = DOMAIN_URL + '/spaces/resourcetimeslots'
+
+    def get_resource_time_slots(self,
+                                ResourceTimeSlot_Id=None,
+                                ResourceTimeSlot_Resource=None,
+                                ResourceTimeSlot_FromTime=None,
+                                ResourceTimeSlot_ToTime=None,
+                                ResourceTimeSlot_DayOfWeek=None):
+        """
+        API to get all resource_time_slots.
+        """
+        params = parse_params(locals())
+        return self.session.get(self.BASE_URL, params=params)
+
+    def get_resource_time_slot_by_id(self, ResourceTimeSlot_Id):
+        """
+        API to get resource_time_slot by resource_time_slot id.
+        """
+        return self.session.get(
+            self.BASE_URL + '/{}'.format(ResourceTimeSlot_Id))
+
+    def create_resource_time_slot(self,
+                                  ResourceId=None,
+                                  FromTime=None,
+                                  ToTime=None):
+        """
+        API to create a resource_time_slot.
+        All params are required.
+        """
+        payload = parse_body(locals())
+        return self.session.post(self.BASE_URL, data=payload)
+
+    def delete_resource_time_slot(self, ResourceTimeSlot_Id):
+        """
+        API to delete resource_time_slot by resource_time_slot id.
+        """
+        return self.session.delete(
+            self.BASE_URL + '/{}'.format(ResourceTimeSlot_Id))
+
+    def update_resource_time_slot(self,
+                                  Id=None,
+                                  ResourceId=None,
+                                  FromTime=None,
+                                  ToTime=None):
+        """
+        API to update a resource_time_slot.
         All params are required.
         """
         payload = parse_body(locals())

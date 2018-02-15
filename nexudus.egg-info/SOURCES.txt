@@ -1,0 +1,8 @@
+setup.py
+nexudus/__init__.py
+nexudus/nexudus.py
+nexudus.egg-info/PKG-INFO
+nexudus.egg-info/SOURCES.txt
+nexudus.egg-info/dependency_links.txt
+nexudus.egg-info/not-zip-safe
+nexudus.egg-info/top_level.txt
